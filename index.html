@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Violet Security</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --bg:#07070f;
+  --card:#10101a;
+  --soft:#171727;
+  --border:rgba(255,255,255,0.06);
+  --text:#f4f4ff;
+  --muted:#b5b5cb;
+  --purple:#8b5cf6;
+  --purple2:#6d28d9;
+  --glow:rgba(139,92,246,0.45);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND EFFECTS */
+
+.bg-grid{
+  position:fixed;
+  inset:0;
+  background-image:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(circle at center, black 30%, transparent 90%);
+  z-index:-4;
+}
+
+.glow{
+  position:fixed;
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  filter:blur(120px);
+  z-index:-3;
+  opacity:0.4;
+}
+
+.glow-1{
+  background:var(--purple);
+  top:-200px;
+  left:-200px;
+}
+
+.glow-2{
+  background:#4338ca;
+  bottom:-200px;
+  right:-200px;
+}
+
+/* LAYOUT */
+
+.container{
+  width:90%;
+  max-width:1280px;
+  margin:auto;
+}
+
+/* NAV */
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:999;
+  backdrop-filter:blur(18px);
+  background:rgba(7,7,15,0.72);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 0;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-weight:800;
+  letter-spacing:-0.5px;
+  font-size:1.25rem;
+}
+
+.logo svg{
+  width:42px;
+  height:42px;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:34px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#d2d2ea;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+.nav-button{
+  padding:14px 22px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  color:white !important;
+  box-shadow:0 15px 35px rgba(139,92,246,0.25);
+}
+
+/* HERO */
+
+.hero{
+  padding:120px 0 100px;
+  position:relative;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  align-items:center;
+  gap:80px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:12px 18px;
+  border-radius:999px;
+  color:#d8d8f0;
+  margin-bottom:28px;
+  font-size:0.95rem;
+}
+
+.badge-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--purple);
+  box-shadow:0 0 18px var(--purple);
+}
+
+.hero h1{
+  font-size:5.4rem;
+  line-height:0.95;
+  letter-spacing:-4px;
+  margin-bottom:30px;
+  max-width:780px;
+}
+
+.gradient{
+  background:linear-gradient(135deg,#ffffff,#9f7aea,#7c3aed);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:1.18rem;
+  line-height:1.9;
+  max-width:680px;
+  margin-bottom:40px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:18px;
+  margin-bottom:45px;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  color:white;
+  text-decoration:none;
+  padding:18px 30px;
+  border-radius:18px;
+  font-weight:600;
+  box-shadow:0 20px 40px rgba(139,92,246,0.28);
+  transition:0.3s;
+}
+
+.btn-primary:hover{
+  transform:translateY(-4px);
+}
+
+.btn-secondary{
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(10px);
+  color:white;
+  text-decoration:none;
+  padding:18px 30px;
+  border-radius:18px;
+  font-weight:600;
+}
+
+.hero-trust{
+  display:flex;
+  gap:28px;
+  flex-wrap:wrap;
+  color:#b8b8d2;
+}
+
+.hero-trust span{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* HERO VISUAL */
+
+.visual-wrap{
+  position:relative;
+}
+
+.hero-visual{
+  position:relative;
+  border-radius:38px;
+  background:linear-gradient(180deg,#161625,#10101b);
+  border:1px solid rgba(255,255,255,0.08);
+  overflow:hidden;
+  min-height:580px;
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.circuit{
+  position:absolute;
+  inset:0;
+  opacity:0.16;
+}
+
+.shield-core{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.shield{
+  width:260px;
+  height:260px;
+  position:relative;
+  animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-16px);}
+  100%{transform:translateY(0px);}
+}
+
+.floating-card{
+  position:absolute;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  padding:18px 22px;
+  color:#e7e7fa;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+
+.float-top{
+  top:40px;
+  left:30px;
+}
+
+.float-bottom{
+  bottom:40px;
+  right:30px;
+}
+
+/* SECTION */
+
+section{
+  padding:110px 0;
+}
+
+.section-title{
+  font-size:3.5rem;
+  letter-spacing:-3px;
+  margin-bottom:24px;
+}
+
+.section-subtitle{
+  color:var(--muted);
+  max-width:720px;
+  line-height:1.9;
+  font-size:1.1rem;
+  margin-bottom:70px;
+}
+
+/* TRUST */
+
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.trust-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:28px;
+  padding:34px;
+  backdrop-filter:blur(16px);
+}
+
+.icon-box{
+  width:60px;
+  height:60px;
+  border-radius:18px;
+  background:rgba(139,92,246,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:22px;
+}
+
+.icon-box svg{
+  width:30px;
+  height:30px;
+}
+
+.trust-card h3{
+  margin-bottom:16px;
+  font-size:1.25rem;
+}
+
+.trust-card p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* SERVICES */
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.service-card{
+  position:relative;
+  background:linear-gradient(180deg,#11111d,#0d0d17);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:30px;
+  padding:40px;
+  overflow:hidden;
+  transition:0.35s;
+}
+
+.service-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,transparent,rgba(139,92,246,0.08));
+  opacity:0;
+  transition:0.35s;
+}
+
+.service-card:hover::before{
+  opacity:1;
+}
+
+.service-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(139,92,246,0.3);
+}
+
+.service-card h3{
+  margin:26px 0 16px;
+  font-size:1.45rem;
+}
+
+.service-card p{
+  color:var(--muted);
+  line-height:1.85;
+}
+
+.learn{
+  margin-top:26px;
+  display:inline-block;
+  color:#b894ff;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* ABOUT */
+
+.about-panel{
+  display:grid;
+  grid-template-columns:0.9fr 1.1fr;
+  gap:70px;
+  align-items:center;
+  background:linear-gradient(180deg,#11111d,#0c0c16);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:40px;
+  padding:80px;
+}
+
+.portrait-wrap{
+  position:relative;
+}
+
+.portrait{
+  height:540px;
+  border-radius:36px;
+  overflow:hidden;
+  background:
+  linear-gradient(135deg,#8b5cf6,#4338ca);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.portrait svg{
+  width:80%;
+  opacity:0.95;
+}
+
+.about-list{
+  list-style:none;
+  margin-top:34px;
+}
+
+.about-list li{
+  margin-bottom:18px;
+  color:#d2d2ea;
+  display:flex;
+  gap:14px;
+}
+
+/* CTA */
+
+.cta{
+  position:relative;
+  overflow:hidden;
+  border-radius:40px;
+  background:linear-gradient(135deg,#1b1037,#0c0c16);
+  padding:80px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.cta::before{
+  content:'';
+  position:absolute;
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  background:rgba(139,92,246,0.18);
+  top:-200px;
+  right:-120px;
+  filter:blur(80px);
+}
+
+.cta-content{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:40px;
+}
+
+.cta h2{
+  font-size:3.4rem;
+  letter-spacing:-3px;
+  margin-bottom:18px;
+}
+
+.cta p{
+  color:#d0d0e7;
+  line-height:1.8;
+  max-width:680px;
+}
+
+/* FOOTER */
+
+footer{
+  padding:90px 0 40px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:50px;
+  margin-bottom:60px;
+}
+
+.footer-grid h4{
+  margin-bottom:24px;
+}
+
+.footer-grid p,
+.footer-grid a{
+  color:#9d9db5;
+  text-decoration:none;
+  line-height:2;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:28px;
+  color:#7f7f98;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* MOBILE */
+
+@media(max-width:1150px){
+
+.hero-grid,
+.about-panel,
+.services-grid,
+.trust-grid,
+.footer-grid{
+  grid-template-columns:1fr;
+}
+
+.hero h1{
+  font-size:4rem;
+}
+
+}
+
+@media(max-width:768px){
+
+.nav-links{
+  display:none;
+}
+
+.hero{
+  padding-top:80px;
+}
+
+.hero h1{
+  font-size:3rem;
+  letter-spacing:-2px;
+}
+
+.section-title{
+  font-size:2.4rem;
+}
+
+.hero-buttons{
+  flex-direction:column;
+}
+
+.cta-content{
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.about-panel,
+.cta{
+  padding:40px;
+}
+
+.cta h2{
+  font-size:2.2rem;
+}
+
+.hero-visual{
+  min-height:460px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-grid"></div>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<!-- NAV -->
+
+<nav>
+
+<div class="container nav-inner">
+
+<div class="logo">
+
+<svg viewBox="0 0 120 120" fill="none">
+<path d="M60 8L102 26V56C102 82 84 104 60 112C36 104 18 82 18 56V26L60 8Z" fill="url(#g)"/>
+<path d="M60 24L86 36V56C86 74 75 89 60 96C45 89 34 74 34 56V36L60 24Z" fill="#fff" fill-opacity="0.15"/>
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="120" y2="120">
+<stop stop-color="#A78BFA"/>
+<stop offset="1" stop-color="#6D28D9"/>
+</linearGradient>
+</defs>
+</svg>
+
+Violet Security
+
+</div>
+
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+<a href="contact.html" class="nav-button">Book Consultation</a>
+</div>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">
+<div class="badge-dot"></div>
+Practical Cybersecurity for Startups & SMEs
+</div>
+
+<h1>
+Cybersecurity that
+<span class="gradient">actually makes sense</span>
+for your business.
+</h1>
+
+<p>
+We help startups and SMEs understand their risks,
+fix what matters, and stay secure and compliant —
+without the complexity or cost of a full-time security team.
+</p>
+
+<div class="hero-buttons">
+<a href="contact.html" class="btn-primary">Book a Free Consultation</a>
+<a href="#services" class="btn-secondary">Explore Services</a>
+</div>
+
+<div class="hero-trust">
+<span>✓ CISSP Certified</span>
+<span>✓ SANS Certified</span>
+<span>✓ Real-World Security Leadership</span>
+</div>
+
+</div>
+
+<div class="visual-wrap">
+
+<div class="hero-visual">
+
+<svg class="circuit" viewBox="0 0 800 800">
+<path d="M100 100H300V250H500V400H700" stroke="#8B5CF6" stroke-width="2"/>
+<path d="M700 150H520V320H300V620H100" stroke="#8B5CF6" stroke-width="2"/>
+<path d="M200 700V520H420V280H640V100" stroke="#8B5CF6" stroke-width="2"/>
+</svg>
+
+<div class="shield-core">
+
+<div class="shield">
+
+<svg viewBox="0 0 240 240">
+<defs>
+<linearGradient id="shieldGradient" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#A78BFA"/>
+<stop offset="100%" stop-color="#6D28D9"/>
+</linearGradient>
+</defs>
+
+<path d="M120 15L200 48V110C200 162 166 205 120 220C74 205 40 162 40 110V48L120 15Z"
+fill="url(#shieldGradient)"
+stroke="rgba(255,255,255,0.4)"
+stroke-width="4"/>
+
+<text x="120" y="142"
+font-size="84"
+font-weight="800"
+fill="white"
+text-anchor="middle"
+font-family="Inter">
+V
+</text>
+
+</svg>
+
+</div>
+
+</div>
+
+<div class="floating-card float-top">
+🔒 Vulnerability Management
+</div>
+
+<div class="floating-card float-bottom">
+✓ Cyber Essentials Ready
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TRUST -->
+
+<section>
+
+<div class="container">
+
+<h2 class="section-title">
+Built for growing businesses
+</h2>
+
+<p class="section-subtitle">
+Violet Security combines real-world technical expertise
+with practical business-focused guidance — helping you
+improve security without unnecessary complexity.
+</p>
+
+<div class="trust-grid">
+
+<div class="trust-card">
+
+<div class="icon-box">
+🛡️
+</div>
+
+<h3>Experienced</h3>
+
+<p>
+Hands-on expertise across penetration testing,
+vulnerability management, infrastructure security,
+and security leadership.
+</p>
+
+</div>
+
+<div class="trust-card">
+
+<div class="icon-box">
+🏆
+</div>
+
+<h3>Certified</h3>
+
+<p>
+Industry-recognised certifications including
+CISSP, SANS, and Cisco.
+</p>
+
+</div>
+
+<div class="trust-card">
+
+<div class="icon-box">
+⚡
+</div>
+
+<h3>Practical Approach</h3>
+
+<p>
+Clear, actionable advice that improves security
+without slowing your business down.
+</p>
+
+</div>
+
+<div class="trust-card">
+
+<div class="icon-box">
+📈
+</div>
+
+<h3>Business Focused</h3>
+
+<p>
+Security aligned to growth, resilience,
+and operational confidence.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section>
+<section id="services">
+
+<div class="container">
+
+<h2 class="section-title">
+Security solutions that deliver real results
+</h2>
+
+<p class="section-subtitle">
+Practical cybersecurity services tailored for startups
+and SMEs that need clarity, protection, and confidence.
+</p>
+
+<div class="services-grid">
+
+<div class="service-card">
+
+<div class="icon-box">
+🔍
+</div>
+
+<h3>Vulnerability Assessments</h3>
+
+<p>
+Identify and prioritise exploitable weaknesses
+before attackers can take advantage of them.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="icon-box">
+🧪
+</div>
+
+<h3>Penetration Testing</h3>
+
+<p>
+Simulate real-world attacks to uncover vulnerabilities
+across systems, applications, and infrastructure.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="icon-box">
+📋
+</div>
+
+<h3>Security Audits</h3>
+
+<p>
+Independent reviews of systems and processes
+to improve resilience and strengthen compliance.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="icon-box">
+🏅
+</div>
+
+<h3>Cyber Essentials</h3>
+
+<p>
+End-to-end support for Cyber Essentials
+and ISO 27001 readiness.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section>
+<section id="about">
+
+<div class="container">
+
+<div class="about-panel">
+
+<div class="portrait-wrap">
+
+<div class="portrait">
+
+<svg viewBox="0 0 300 400">
+
+<circle cx="150" cy="120" r="70" fill="rgba(255,255,255,0.16)"/>
+<rect x="75" y="200" width="150" height="140" rx="28" fill="rgba(255,255,255,0.16)"/>
+
+</svg>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="badge">
+<div class="badge-dot"></div>
+About Violet Security
+</div>
+
+<h2 class="section-title">
+Experience you can rely on.
+</h2>
+
+<p class="section-subtitle">
+Violet Security was founded to help businesses
+navigate cybersecurity with clarity and confidence.
+With experience across network engineering,
+penetration testing, vulnerability management,
+and security leadership, we deliver practical
+protection without unnecessary complexity.
+</p>
+
+<ul class="about-list">
+<li>✓ Lead Cybersecurity Engineer background</li>
+<li>✓ CISSP, SANS & Cisco certified</li>
+<li>✓ Practical, business-focused advice</li>
+<li>✓ Real-world technical expertise</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section>
+
+<div class="container">
+
+<div class="cta">
+
+<div class="cta-content">
+
+<div>
+
+<h2>
+Security doesn’t need to be overwhelming.
+</h2>
+
+<p>
+Book a free consultation and discover practical,
+expert cybersecurity guidance tailored to your business.
+</p>
+
+</div>
+
+<a href="contact.html" class="btn-primary">
+Book Consultation
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<div class="logo" style="margin-bottom:24px;">
+
+<svg viewBox="0 0 120 120" fill="none">
+<path d="M60 8L102 26V56C102 82 84 104 60 112C36 104 18 82 18 56V26L60 8Z" fill="url(#g2)"/>
+<defs>
+<linearGradient id="g2" x1="0" y1="0" x2="120" y2="120">
+<stop stop-color="#A78BFA"/>
+<stop offset="1" stop-color="#6D28D9"/>
+</linearGradient>
+</defs>
+</svg>
+
+Violet Security
+
+</div>
+
+<p>
+Practical cybersecurity for startups and SMEs.
+Understand your risks. Fix what matters.
+Stay secure.
+</p>
+
+</div>
+
+<div>
+
+<h4>Company</h4>
+
+<a href="#">Home</a><br>
+<a href="#">Services</a><br>
+<a href="#">About</a><br>
+<a href="#">Contact</a>
+
+</div>
+
+<div>
+
+<h4>Services</h4>
+
+<a href="#">Vulnerability Assessments</a><br>
+<a href="#">Penetration Testing</a><br>
+<a href="#">Security Audits</a><br>
+<a href="#">Cyber Essentials</a>
+
+</div>
+
+<div>
+
+<h4>Contact</h4>
+<section id="contact">
+
+<p>hello@violetsec.co</p>
+<p>United Kingdom</p>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<span>
+© 2025 Violet Security. All rights reserved.
+</span>
+
+<span>
+Privacy Policy
+</span>
+
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
